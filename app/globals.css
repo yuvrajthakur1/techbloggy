@@ -1,26 +1,85 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+@import "tw-animate-css";
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+}
+
+/* For Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* in your globals.css or tailwind plugin */
+.clip-curve {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+::-webkit-scrollbar-track {
+  background: #e7f2ef; /* Light Aqua */
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #708993; /* Muted Teal */
+  border-radius: 8px;
+  border: 2px solid #e7f2ef; /* matches track */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a1c2bd; /* Soft Minty Gray on hover */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #708993 #e7f2ef; /* thumb | track */
+}
+
+/* globals.css ya component css */
+.markdown-preview {
+  color: #e7f2ef; /* text color */
+  font-family: "Inter", sans-serif;
+  line-height: 1.7;
+}
+
+.markdown-preview h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #a1c2bd;
+}
+
+.markdown-preview h2 {
+  font-size: 2rem;
+  color: #708993;
+}
+
+.markdown-preview p {
+  margin-bottom: 1rem;
+}
+
+.markdown-preview a {
+  color: #a1c2bd;
+  text-decoration: underline;
+}
+
+.markdown-preview code {
+  background: #1e1b3b;
+  color: #e7f2ef;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+}
+
+.markdown-preview pre {
+  background: #1e1b3b;
+  color: #e7f2ef;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
 }
