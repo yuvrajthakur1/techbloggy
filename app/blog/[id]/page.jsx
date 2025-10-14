@@ -133,7 +133,7 @@ export default function BlogDetailClient() {
                 src={
                   blog.author.avatar.startsWith("http")
                     ? blog.author.avatar
-                    : `http://localhost:5000${blog.author.avatar}`
+                    : `${process.env.NEXT_PUBLIC_API_URL}${blog.author.avatar}`
                 }
                 alt={blog.author.name}
                 fill
@@ -164,7 +164,7 @@ export default function BlogDetailClient() {
               src={
                 blog.image.startsWith("http")
                   ? blog.image
-                  : `http://localhost:5000${blog.image}`
+                  : `${process.env.NEXT_PUBLIC_API_URL}${blog.image}`
               }
               alt={blog.title}
               fill

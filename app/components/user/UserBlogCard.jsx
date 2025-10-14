@@ -39,7 +39,7 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
   const [editDescription, setEditDescription] = useState(description);
   const [editImage, setEditImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(
-    image ? `http://localhost:5000${image}` : null
+    image ? `${process.env.NEXT_PUBLIC_API_URL}${image}` : null
   );
   const [saving, setSaving] = useState(false);
 
@@ -158,7 +158,7 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
   const displayImage = editModalOpen
     ? previewImage
     : image
-    ? `http://localhost:5000${image}`
+    ? `${process.env.NEXT_PUBLIC_API_URL}${image}`
     : null;
 
   // like
@@ -196,7 +196,7 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
             <div className="relative h-10 w-10 rounded-full overflow-hidden border-2 border-[#A1C2BD]">
               <Link href={`/publicprofile/${author._id}`}>
                 <Image
-                  src={`http://localhost:5000${author.avatar}`}
+                  src={`${process.env.NEXT_PUBLIC_API_URL}${author.avatar}`}
                   fill
                   alt={author.name}
                   className="object-cover"

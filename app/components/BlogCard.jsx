@@ -78,7 +78,7 @@ export default function BlogCard({ blog }) {
       {blog.image && (
         <div className="relative w-full h-36 sm:h-44 md:h-48 overflow-hidden">
           <Image
-            src={`http://localhost:5000${blog.image}`}
+            src={`${process.env.NEXT_PUBLIC_API_URL}${blog.image}`}
             fill
             alt={blog.title}
             className="object-cover group-hover:scale-105 transition-transform duration-500"

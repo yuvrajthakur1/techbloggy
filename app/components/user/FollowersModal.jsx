@@ -524,7 +524,7 @@ export default function FollowersModal({ userId, onClose }) {
                         src={
                           follower.avatar?.startsWith("http")
                             ? follower.avatar
-                            : `http://localhost:5000${follower.avatar}`
+                            : `${process.env.NEXT_PUBLIC_API_URL}${follower.avatar}`
                         }
                         alt={follower.name}
                         fill

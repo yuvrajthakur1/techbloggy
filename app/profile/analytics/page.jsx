@@ -69,7 +69,7 @@ export default function UserDashboard() {
       <div className="flex items-center gap-4 mb-8">
         {user?.avatar && (
           <img
-            src={`http://localhost:5000${user.avatar}`}
+            src={`${process.env.NEXT_PUBLIC_API_URL}${user.avatar}`}
             alt={user.name}
             className="h-20 w-20 rounded-full object-cover"
           />
@@ -108,7 +108,7 @@ export default function UserDashboard() {
             >
               {b.image && (
                 <img
-                  src={`http://localhost:5000${b.image}`}
+                  src={`${process.env.NEXT_PUBLIC_API_URL}${b.image}`}
                   alt={b.title}
                   className="h-40 w-full object-cover rounded-md mb-2"
                 />
@@ -134,7 +134,7 @@ export default function UserDashboard() {
               <div className="flex flex-col items-center gap-2 cursor-pointer">
                 {f.avatar && (
                   <img
-                    src={`http://localhost:5000${f.avatar}`}
+                    src={`${process.env.NEXT_PUBLIC_API_URL}${f.avatar}`}
                     alt={f.name}
                     className="h-16 w-16 rounded-full object-cover"
                   />
