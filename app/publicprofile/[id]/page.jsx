@@ -125,7 +125,7 @@ export default function PublicProfilePage() {
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 w-full sm:w-auto">
             <div className="relative h-24 w-24 sm:h-28 sm:w-28 rounded-full border-4 border-[#A1C2BD] shadow-lg overflow-hidden flex-shrink-0">
               <Image
-                src={`http://localhost:5000${profileUser.avatar}`}
+                src={`${process.env.NEXT_PUBLIC_API_URL}${profileUser.avatar}`}
                 alt="Profile Avatar"
                 fill
                 className="object-cover"
