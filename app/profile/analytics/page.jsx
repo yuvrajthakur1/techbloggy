@@ -111,8 +111,8 @@ export default function UserDashboard() {
                 whileHover={{ scale: 1.03 }}
               >
                 {b.image && (
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_API_URL}${b.image}`} // full image URL
+                 <Image
+                   src={`${process.env.NEXT_PUBLIC_API_URL}${b.image}`} // full image URL
                     alt={b.title}
                     width={400} // desired width
                     height={160} // desired height (approx. h-40)
