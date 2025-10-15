@@ -118,7 +118,7 @@ export default function UserDashboard() {
                   <Image
                     src={`${process.env.NEXT_PUBLIC_API_URL}${b.image}`}
                     fill
-                    alt={blog.title}
+                    alt={b.title}
                     className="h-40 w-full object-cover rounded-md mb-2"
                   />
                 )}
