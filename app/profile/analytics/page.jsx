@@ -99,38 +99,40 @@ export default function UserDashboard() {
             <p className="text-gray-300">Following</p>
           </div>
         </div>
-
         {/* My Blogs */}
         <div className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">My Blogs</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {blogs?.map((b) => (
               <motion.div
                 key={b._id}
-                className="p-4 bg-[#1E1D40]/80 rounded-xl shadow-md"
+                className="bg-[#1E1D40]/80 rounded-xl shadow-md overflow-hidden flex flex-col"
                 whileHover={{ scale: 1.03 }}
               >
+                {/* Image */}
                 {b.image && (
-                  // <img
-                  //   src={`${process.env.NEXT_PUBLIC_API_URL}${b.image}`}
-                  //   alt={b.title}
-                  //   className="h-40 w-full object-cover rounded-md mb-2"
-                  // />
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_API_URL}${b.image}`}
-                    fill
-                    alt={b.title}
-                    className="h-40 w-full object-cover rounded-md mb-2"
-                  />
+                  <div className="relative w-full h-40">
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_API_URL}${b.image}`}
+                      alt={b.title}
+                      fill
+                      style={{ objectFit: "cover" }}
+                      className="rounded-t-xl"
+                      priority
+                    />
+                  </div>
                 )}
-                {console.log(`${process.env.NEXT_PUBLIC_API_URL}${b?.image}`)}
-                <h3 className="font-semibold">{b.title}</h3>
-                <button
-                  onClick={() => router.push(`/blog/${b._id}`)}
-                  className="text-[#708993] hover:text-[#A1C2BD] flex gap-1 items-center mt-1"
-                >
-                  See More <ArrowRight size={16} />
-                </button>
+
+                {/* Content */}
+                <div className="p-4 flex flex-col flex-1 justify-between">
+                  <h3 className="font-semibold text-white mb-2">{b.title}</h3>
+                  <button
+                    onClick={() => router.push(`/blog/${b._id}`)}
+                    className="text-[#708993] hover:text-[#A1C2BD] flex gap-1 items-center mt-auto font-medium"
+                  >
+                    See More <ArrowRight size={16} />
+                  </button>
+                </div>
               </motion.div>
             ))}
           </div>
