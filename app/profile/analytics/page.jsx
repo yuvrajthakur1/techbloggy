@@ -12,7 +12,7 @@ import Image from "next/image";
 export default function UserDashboard() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [hasFetched, setHasFetched] = useState(false); // ✅ track if API call finished
+  const [hasFetched, setHasFetched] = useState(false);
   const { token } = useAuthStore();
   const router = useRouter();
 
@@ -20,7 +20,7 @@ export default function UserDashboard() {
     const fetchDashboard = async () => {
       if (!token) {
         setLoading(false);
-        setHasFetched(true); // mark that fetch attempted
+        setHasFetched(true);
         return;
       }
       try {
@@ -28,12 +28,11 @@ export default function UserDashboard() {
           headers: { Authorization: `Bearer ${token}` },
         });
         setData(res.data);
-        // only set actual data
       } catch (err) {
         console.error("Error fetching dashboard:", err);
       } finally {
         setLoading(false);
-        setHasFetched(true); // ✅ API finished
+        setHasFetched(true);
       }
     };
 
@@ -41,7 +40,7 @@ export default function UserDashboard() {
   }, [token]);
 
   const containerClasses =
-    "min-h-[calc(100vh-80px)]  mx-auto p-6 bg-gradient-to-br from-[#19183B] via-[#708993] to-[#E7F2EF] text-white";
+    "min-h-[calc(100vh-80px)] mx-auto p-6 bg-gradient-to-br from-[#19183B] via-[#708993] to-[#E7F2EF] text-white";
 
   if (loading) {
     return (
@@ -51,20 +50,24 @@ export default function UserDashboard() {
     );
   }
 
-  console.log(data);
-
-  // ✅ Only show "No data" if API finished fetching and no data returned
   if (hasFetched && !data) {
     return (
       <div className={`${containerClasses} flex items-center justify-center`}>
-        <p className="text-white text-center text-lg">Loading..</p>
+        <p className="text-white text-center text-lg">No data found</p>
       </div>
     );
   }
 
-  if (!data) return null; // nothing to render yet
+  if (!data) return null;
 
   const { user, stats, blogs, recentFollowers } = data;
+
+  const buildImageUrl = (path) => {
+    if (!path) return "/placeholder.png"; // fallback image
+    const base = process.env.NEXT_PUBLIC_API_URL;
+    // make sure there is exactly one slash
+    return `${base.replace(/\/$/, "")}/${path.replace(/^\/+/, "")}`;
+  };
 
   return (
     <div className={containerClasses}>
@@ -72,10 +75,12 @@ export default function UserDashboard() {
         {/* User Info */}
         <div className="flex items-center gap-4 mb-8">
           {user?.avatar && (
-            <img
-              src={`${process.env.NEXT_PUBLIC_API_URL}${user.avatar}`}
-              alt={user.name}
-              className="h-20 w-20 rounded-full object-cover"
+            <Image
+              src={buildImageUrl(user.avatar)}
+              alt={user.name || "Avatar"}
+              width={80}
+              height={80}
+              className="rounded-full object-cover"
             />
           )}
           <div>
@@ -84,7 +89,7 @@ export default function UserDashboard() {
           </div>
         </div>
 
-        {/* Stats Cards */}
+        {/* Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           <div className="p-4 bg-[#1E1D40]/80 rounded-xl text-center shadow-md">
             <p className="text-2xl font-bold">{stats?.blogsCount || 0}</p>
@@ -99,6 +104,7 @@ export default function UserDashboard() {
             <p className="text-gray-300">Following</p>
           </div>
         </div>
+
         {/* My Blogs */}
         <div className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">My Blogs</h2>
@@ -109,11 +115,10 @@ export default function UserDashboard() {
                 className="bg-[#1E1D40]/80 rounded-xl shadow-md overflow-hidden flex flex-col"
                 whileHover={{ scale: 1.03 }}
               >
-                {/* Image */}
                 {b.image && (
                   <div className="relative w-full h-40">
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_API_URL}${b.image}`}
+                      src={buildImageUrl(b.image)}
                       alt={b.title}
                       fill
                       style={{ objectFit: "cover" }}
@@ -122,8 +127,6 @@ export default function UserDashboard() {
                     />
                   </div>
                 )}
-
-                {/* Content */}
                 <div className="p-4 flex flex-col flex-1 justify-between">
                   <h3 className="font-semibold text-white mb-2">{b.title}</h3>
                   <button
@@ -146,10 +149,12 @@ export default function UserDashboard() {
               <Link key={f._id} href={`/publicprofile/${f._id}`}>
                 <div className="flex flex-col items-center gap-2 cursor-pointer">
                   {f.avatar && (
-                    <img
-                      src={`${process.env.NEXT_PUBLIC_API_URL}${f.avatar}`}
+                    <Image
+                      src={buildImageUrl(f.avatar)}
                       alt={f.name}
-                      className="h-16 w-16 rounded-full object-cover"
+                      width={64}
+                      height={64}
+                      className="rounded-full object-cover"
                     />
                   )}
                   <p className="text-gray-300 text-sm">{f.name}</p>
