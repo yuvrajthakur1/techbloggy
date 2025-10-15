@@ -247,8 +247,11 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
         {/* Blog Image */}
         {displayImage && (
           <div className="relative w-full aspect-[16/9] sm:aspect-[4/3] lg:aspect-[3/2] max-h-[400px] sm:max-h-[350px] md:max-h-[300px] overflow-hidden rounded-2xl">
+            {
+              console.log(displayImage)
+            }
             <Image
-              src={displayImage}
+              src={`${process.env.NEXT_PUBLIC_API_URL}${blog.image}`}
               fill
               alt={blog.title}
               className="object-cover transition-transform duration-500 hover:scale-105"

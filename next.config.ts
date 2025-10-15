@@ -4,11 +4,18 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     remotePatterns: [
+      // ✅ Local backend (development)
       {
         protocol: "http",
         hostname: "localhost",
-        port: "5000", // agar tumhara backend 3000 pe run ho raha hai
-        pathname: "/**", // ye required hai
+        port: "5000",
+        pathname: "/**",
+      },
+      // ✅ Production backend (Render, etc.)
+      {
+        protocol: "https",
+        hostname: "blogbackend-mowg.onrender.com",
+        pathname: "/**",
       },
     ],
   },
