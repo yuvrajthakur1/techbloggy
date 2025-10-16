@@ -46,7 +46,6 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
 
   const router = useRouter();
   const isAuthor = user?._id === author._id;
- 
 
   useEffect(() => {
     if (editModalOpen) {
@@ -191,16 +190,18 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-[#708993]/20">
           <div className="flex items-center gap-3">
-            <div className="relative h-10 w-10 rounded-full overflow-hidden border-2 border-[#A1C2BD]">
-              <Link href={`/publicprofile/${author._id}`}>
-                <Image
-                  src={author?.avatar?.url}
-                  fill
-                  alt={author.name}
-                  className="object-cover"
-                />
-              </Link>
-            </div>
+            { author?.avatar?.url &&
+              <div className="relative h-10 w-10 rounded-full overflow-hidden border-2 border-[#A1C2BD]">
+                <Link href={`/publicprofile/${author._id}`}>
+                  <Image
+                    src={author?.avatar?.url}
+                    fill
+                    alt={author.name}
+                    className="object-cover"
+                  />
+                </Link>
+              </div>
+            }
             <div>
               <h1 className="text-[#E7F2EF] font-semibold text-sm">
                 {author.name}
@@ -245,9 +246,7 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
         {/* Blog Image */}
         {displayImage && (
           <div className="relative w-full aspect-[16/9] sm:aspect-[4/3] lg:aspect-[3/2] max-h-[400px] sm:max-h-[350px] md:max-h-[300px] overflow-hidden rounded-2xl">
-            {
-              console.log(displayImage)
-            }
+            {console.log(displayImage)}
             <Image
               src={blog?.image?.url}
               fill
@@ -293,8 +292,6 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
           <CommentSection blogId={_id} blogAuthorId={author?._id} />
         </div>
       </div>
-
-     
 
       {editModalOpen && (
         <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
