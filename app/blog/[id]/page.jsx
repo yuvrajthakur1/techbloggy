@@ -131,9 +131,7 @@ export default function BlogDetailClient() {
             <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-[#A1C2BD] shadow-md">
               <Image
                 src={
-                  blog.author.avatar.startsWith("http")
-                    ? blog.author.avatar
-                    : `${process.env.NEXT_PUBLIC_API_URL}${blog.author.avatar}`
+                  blog.author?.avatar?.url
                 }
                 alt={blog.author.name}
                 fill
@@ -162,9 +160,7 @@ export default function BlogDetailClient() {
           <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-xl overflow-hidden mb-8 shadow-xl">
             <Image
               src={
-                blog.image.startsWith("http")
-                  ? blog.image
-                  : `${process.env.NEXT_PUBLIC_API_URL}${blog.image}`
+              blog.image?.url
               }
               alt={blog.title}
               fill
@@ -208,7 +204,7 @@ export default function BlogDetailClient() {
         <div className="flex items-center gap-6 mb-4">
           <button
             onClick={handleLike}
-            className={`flex items-center gap-1.5 ${liked ? "text-red-500" : ""}`}
+            className={`flex items-center gap-1.5 ${liked ? "text-red-500" : "text-white"}`}
           >
             <Heart size={20} fill={liked ? "currentColor" : "none"} />
             <span>{likesCount}</span>

@@ -11,7 +11,7 @@ const Comment = ({comments,user,blogAuthorId,handleDeleteComment}) => {
         >
           {/* Avatar */}
           <img
-            src={`${process.env.NEXT_PUBLIC_LOCAL_BACKEND}${c.user?.avatar}`}
+            src={c.user?.avatar?.url}
             alt={c.user?.name || "User"}
             className="w-8 h-8 rounded-full object-cover border border-[#708993]/30"
           />

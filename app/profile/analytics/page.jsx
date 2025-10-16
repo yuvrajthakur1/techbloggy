@@ -76,7 +76,7 @@ export default function UserDashboard() {
         <div className="flex items-center gap-4 mb-8">
           {user?.avatar && (
             <Image
-              src={buildImageUrl(user.avatar)}
+              src={user?.avatar?.url}
               alt={user.name || "Avatar"}
               width={80}
               height={80}
@@ -118,7 +118,7 @@ export default function UserDashboard() {
                 {b.image && (
                   <div className="relative w-full h-40">
                     <Image
-                      src={buildImageUrl(b.image)}
+                      src={b?.image?.url}
                       alt={b.title}
                       fill
                       style={{ objectFit: "cover" }}
@@ -148,9 +148,9 @@ export default function UserDashboard() {
             {recentFollowers?.map((f) => (
               <Link key={f._id} href={`/publicprofile/${f._id}`}>
                 <div className="flex flex-col items-center gap-2 cursor-pointer">
-                  {f.avatar && (
+                  {f?.avatar?.url && (
                     <Image
-                      src={buildImageUrl(f.avatar)}
+                      src={f?.avatar?.url}
                       alt={f.name}
                       width={64}
                       height={64}

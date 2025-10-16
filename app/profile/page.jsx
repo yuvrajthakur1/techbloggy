@@ -227,7 +227,7 @@ export default function ProfilePage() {
               whileHover={{ scale: 1.1 }}
             >
               <Image
-                src={`${process.env.NEXT_PUBLIC_API_URL}${user.avatar}`}
+                src={`${user?.avatar?.url}`}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 alt="Profile Image"

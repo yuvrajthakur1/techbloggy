@@ -38,9 +38,7 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
   const [editTitle, setEditTitle] = useState(title);
   const [editDescription, setEditDescription] = useState(description);
   const [editImage, setEditImage] = useState(null);
-  const [previewImage, setPreviewImage] = useState(
-    image ? `${process.env.NEXT_PUBLIC_API_URL}${image}` : null
-  );
+  const [previewImage, setPreviewImage] = useState(image.url);
   const [saving, setSaving] = useState(false);
 
   const [liked, setLiked] = useState(false);
@@ -196,7 +194,7 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
             <div className="relative h-10 w-10 rounded-full overflow-hidden border-2 border-[#A1C2BD]">
               <Link href={`/publicprofile/${author._id}`}>
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_API_URL}${author.avatar}`}
+                  src={author?.avatar?.url}
                   fill
                   alt={author.name}
                   className="object-cover"
@@ -251,9 +249,9 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
               console.log(displayImage)
             }
             <Image
-              src={`${process.env.NEXT_PUBLIC_API_URL}${blog.image}`}
+              src={blog?.image?.url}
               fill
-              alt={blog.title}
+              alt={blog?.title}
               className="object-cover transition-transform duration-500 hover:scale-105"
             />
           </div>

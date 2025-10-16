@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
       // ✅ Production backend (Render, etc.)
       {
         protocol: "https",
-        hostname: "blogbackend-mowg.onrender.com",
+        hostname: "res.cloudinary.com",
         pathname: "/**",
       },
     ],
