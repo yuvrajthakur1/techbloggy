@@ -128,17 +128,17 @@ export default function BlogDetailClient({id}) {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 border-b border-[#708993]/25 pb-4">
           <div className="flex items-center gap-4">
             <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-[#A1C2BD] shadow-md">
-              <Image
-                src={
-                  blog.author?.avatar?.url
-                }
-                alt={blog.author.name}
+              { blog.author &&
+                <Image
+                src={blog.author?.avatar?.url}
+                alt={blog?.author?.name}
                 fill
                 className="object-cover"
               />
+              }
             </div>
             <p className="text-[#A1C2BD] font-medium text-base sm:text-lg">
-              {blog.author.name}
+              {blog?.author?.name}
             </p>
           </div>
 

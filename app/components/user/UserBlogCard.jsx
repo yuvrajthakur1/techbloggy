@@ -45,7 +45,7 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
   const [likesCount, setLikesCount] = useState(blog.likes?.length || 0);
 
   const router = useRouter();
-  const isAuthor = user?._id === author._id;
+  const isAuthor = user?._id === author?._id;
 
   useEffect(() => {
     if (editModalOpen) {
@@ -206,7 +206,7 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
             }
             <div>
               <h1 className="text-[#E7F2EF] font-semibold text-sm">
-                {author.name}
+                {author?.name}
               </h1>
               <p className="text-[#708993] text-xs">Author</p>
             </div>

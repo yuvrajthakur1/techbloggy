@@ -20,7 +20,7 @@ export default function Feed() {
   const debouncedSearch = useDebounce(search, 1000);
 
   const { user } = useAuthStore();
-  const curId = user ? user._id : "";
+  const curId = user ? user?._id : "";
   const loader = useRef(null);
 
   const loadBlogs = async (pageNum = 1, searchQuery = "", filter = "title") => {
@@ -36,7 +36,7 @@ export default function Feed() {
       else
         setBlogs((prev) => {
           const newBlogs = res.data.blogs.filter(
-            (b) => !prev.some((pb) => pb._id === b._id)
+            (b) => !prev.some((pb) => pb?._id === b?._id)
           );
           return [...prev, ...newBlogs];
         });
