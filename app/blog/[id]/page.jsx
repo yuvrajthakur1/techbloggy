@@ -34,6 +34,12 @@ export async function generateMetadata({ params }) {
         description: blog.description.slice(0, 150),
         images: [blog.image?.url],
       },
+      whatsapp: {
+        card: "summary_large_image",
+        title: `${blog.title} | TechBloggy`,
+        description: blog.description.slice(0, 150),
+        images: [blog.image?.url],
+      },
     };
   } catch (err) {
     console.error("Metadata fetch error:", err);
