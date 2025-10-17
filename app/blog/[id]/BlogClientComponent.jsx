@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -10,16 +8,14 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 const ReactMarkdown = dynamic(() => import("react-markdown"));
 const SyntaxHighlighter = dynamic(() =>
-  import("react-syntax-highlighter").then(mod => mod.Prism)
+  import("react-syntax-highlighter").then((mod) => mod.Prism)
 );
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 import useAuthStore from "../../utils/stores/authSore";
 import { Clipboard, Check, Heart, Share } from "lucide-react";
 import CommentSection from "../../components/blogs/CommentSection";
 
-export default function BlogDetailClient({id}) {
-
-
+export default function BlogDetailClient({ id }) {
   const { user, token } = useAuthStore();
 
   const [blog, setBlog] = useState(null);
@@ -38,10 +34,12 @@ export default function BlogDetailClient({id}) {
         setBlog(res.data);
 
         // Initialize likes
-        const blogLikes = res.data.likes?.map(like => like.user ? like.user.toString() : null).filter(Boolean) || [];
+        const blogLikes =
+          res.data.likes
+            ?.map((like) => (like.user ? like.user.toString() : null))
+            .filter(Boolean) || [];
         setLikesCount(blogLikes.length);
         setLiked(user && blogLikes.includes(user._id));
-
       } catch (err) {
         console.error(err);
         setError("Failed to fetch blog");
@@ -73,7 +71,9 @@ export default function BlogDetailClient({id}) {
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      const updatedLikes = res.data.likes?.map(like => like ? like : null).filter(Boolean) || [];
+      const updatedLikes =
+        res.data.likes?.map((like) => (like ? like : null)).filter(Boolean) ||
+        [];
       setLikesCount(updatedLikes.length);
       setLiked(user && updatedLikes.includes(user._id));
     } catch (err) {
@@ -131,14 +131,15 @@ export default function BlogDetailClient({id}) {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 border-b border-[#708993]/25 pb-4">
           <div className="flex items-center gap-4">
             <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-[#A1C2BD] shadow-md">
-              { blog.author &&
+              {blog.author && (
                 <Image
-                src={blog.author?.avatar?.url}
-                alt={blog?.author?.name}
-                fill
-                className="object-cover"
-              />
-              }
+                  src={blog.author?.avatar?.url}
+                  alt={blog?.author?.name}
+                  fill
+                  className="object-cover"
+                  priority={false}
+                />
+              )}
             </div>
             <p className="text-[#A1C2BD] font-medium text-base sm:text-lg">
               {blog?.author?.name}
@@ -148,11 +149,13 @@ export default function BlogDetailClient({id}) {
           <div className="text-[#708993] text-xs sm:text-sm text-right space-y-1">
             <p>
               <span className="font-semibold text-[#A1C2BD]">Created:</span>{" "}
-              {createdDate.toLocaleDateString()} {createdDate.toLocaleTimeString()}
+              {createdDate.toLocaleDateString()}{" "}
+              {createdDate.toLocaleTimeString()}
             </p>
             <p>
               <span className="font-semibold text-[#A1C2BD]">Updated:</span>{" "}
-              {updatedDate.toLocaleDateString()} {updatedDate.toLocaleTimeString()}
+              {updatedDate.toLocaleDateString()}{" "}
+              {updatedDate.toLocaleTimeString()}
             </p>
           </div>
         </div>
@@ -161,9 +164,7 @@ export default function BlogDetailClient({id}) {
         {blog.image && (
           <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-xl overflow-hidden mb-8 shadow-xl">
             <Image
-              src={
-              blog.image?.url
-              }
+              src={blog.image?.url}
               alt={blog.title}
               fill
               className="object-cover transition-transform duration-500 hover:scale-105"
@@ -206,7 +207,9 @@ export default function BlogDetailClient({id}) {
         <div className="flex items-center gap-6 mb-4">
           <button
             onClick={handleLike}
-            className={`flex items-center gap-1.5 ${liked ? "text-red-500" : "text-white"}`}
+            className={`flex items-center gap-1.5 ${
+              liked ? "text-red-500" : "text-white"
+            }`}
           >
             <Heart size={20} fill={liked ? "currentColor" : "none"} />
             <span>{likesCount}</span>
@@ -219,4 +222,3 @@ export default function BlogDetailClient({id}) {
     </div>
   );
 }
-
