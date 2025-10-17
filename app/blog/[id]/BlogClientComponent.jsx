@@ -3,12 +3,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
 import api from "../../axios/axios";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+const ReactMarkdown = dynamic(() => import("react-markdown"));
+const SyntaxHighlighter = dynamic(() =>
+  import("react-syntax-highlighter").then(mod => mod.Prism)
+);
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 import useAuthStore from "../../utils/stores/authSore";
 import { Clipboard, Check, Heart, Share } from "lucide-react";
@@ -48,7 +51,7 @@ export default function BlogDetailClient({id}) {
     };
 
     fetchBlog();
-  }, [id, user]);
+  }, [id]);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
