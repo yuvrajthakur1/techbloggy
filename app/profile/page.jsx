@@ -222,13 +222,13 @@ export default function ProfilePage() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-12 p-4 sm:p-6 bg-gradient-to-br from-[#19183B] via-[#22215E] to-[#2D2C70] rounded-2xl shadow-2xl border border-[#708993]/20">
           {/* Profile Info */}
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full md:w-auto">
-           { user?.avatar?.url &&
+           { 
               <motion.div
               className="relative h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 rounded-full border-4 border-[#A1C2BD] shadow-lg overflow-hidden"
               whileHover={{ scale: 1.1 }}
             >
               <Image
-                src={`${user?.avatar?.url}`}
+                src= {user?.avatar?.url || '/default.jpg'}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 alt="Profile Image"

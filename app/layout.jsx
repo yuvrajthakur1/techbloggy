@@ -5,6 +5,11 @@ import GlobalLoader from "./components/global/GlobalIndicator"
 import { Playfair_Display, Lora } from "next/font/google";
 import "./globals.css";
 
+export const metadata = {
+  title: "TechBloggy",
+  description: "TechBloggy – a modern blogging platform to share and read the latest tech articles.",
+};
+
 // Fonts
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -25,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${lora.variable}`}>
       <head>
-        <title>My Blog App</title>
+       
       </head>
       <body >
         <GlobalLoader/>
