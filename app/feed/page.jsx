@@ -201,6 +201,9 @@ export default function Feed() {
               }}
               viewport={{ once: false, amount: 0.2 }}
             >
+              {
+                console.log("Apka Blog", blog)
+              }
               <UserBlogCard blog={blog} currentUserId={curId} fullWidth />
             </motion.div>
           ))}

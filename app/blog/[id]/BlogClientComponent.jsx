@@ -137,7 +137,7 @@ export default function BlogDetailClient({ id }) {
                   alt={blog?.author?.name}
                   fill
                   className="object-cover"
-                  priority={false}
+                  priority
                 />
               )}
             </div>
