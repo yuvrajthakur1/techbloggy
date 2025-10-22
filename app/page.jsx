@@ -161,7 +161,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.5 }}
             >
               <Link href="/feed">
-                <Button className="px-8 py-3 rounded-full bg-gradient-to-r from-[#A1C2BD] via-[#708993] to-[#19183B] text-white font-semibold hover:scale-105 transition-transform duration-300 shadow-lg">
+                <Button name = "Explore" className="px-8 py-3 rounded-full bg-gradient-to-r from-[#A1C2BD] via-[#708993] to-[#19183B] text-white font-semibold hover:scale-105 transition-transform duration-300 shadow-lg">
                   Explore More Blogs 🚀
                 </Button>
               </Link>
