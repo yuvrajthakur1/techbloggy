@@ -58,18 +58,8 @@ export default function Home({blogs}) {
                 }}
                 style={{ backgroundSize: "200% auto" }}
               >
-                Tech
-                <MotionFeather
-                  className="h-8 w-8 sm:h-9 sm:w-9 text-[#A1C2BD]"
-                  strokeWidth={1.5}
-                  initial={{ rotate: -8, y: -2 }}
-                  animate={{ rotate: [-8, 6, -8], y: [-2, -6, -2] }}
-                  transition={{
-                    duration: 3.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
+                TechBloggy
+               
               </motion.span>
             </span>
           </motion.h1>
