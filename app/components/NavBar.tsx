@@ -75,6 +75,7 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center">
           <button
+            aria-label="Open menu"
             onClick={() => setIsOpen(!isOpen)}
             className="focus:outline-none text-[#19183B] transition-transform duration-300"
           >
