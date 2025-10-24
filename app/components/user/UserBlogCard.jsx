@@ -55,11 +55,12 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
     }
   }, [editModalOpen]);
 
-  // init liked
+  // ✅ Initialize likes
   useEffect(() => {
-    if (blog.likes && user) {
-      setLiked(blog.likes.some((id) => id.toString() === user._id));
+    if (Array.isArray(blog.likes) && user) {
+      // blog.likes now contains Like objects (not user IDs)
       setLikesCount(blog.likes.length);
+      setLiked(blog.likes.some((like) => like.user?._id === user._id));
     }
   }, [blog.likes, user]);
 
@@ -160,6 +161,7 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
     : null;
 
   // like
+  // ✅ Handle Like Toggle
   const handleLike = async () => {
     if (!user) {
       themeSweetAlert({
@@ -176,14 +178,17 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      const updatedLikes = res.data.likes.map((id) => id.toString());
+
+      // res.data.likes now contains Like objects
+      const updatedLikes = res.data.likes || [];
       setLikesCount(updatedLikes.length);
-      setLiked(user && updatedLikes.includes(user._id));
+      setLiked(updatedLikes.some((like) => like.user?._id === user._id));
     } catch (err) {
       console.error("Failed to like/unlike:", err);
     }
   };
 
+  
   return (
     <>
       {/* Card */}
@@ -191,7 +196,7 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-[#708993]/20">
           <div className="flex items-center gap-3">
-            { author?.avatar?.url &&
+            {author?.avatar?.url && (
               <div className="relative h-10 w-10 rounded-full overflow-hidden border-2 border-[#A1C2BD]">
                 <Link href={`/publicprofile/${author._id}`}>
                   <Image
@@ -203,7 +208,7 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
                   />
                 </Link>
               </div>
-            }
+            )}
             <div>
               <h1 className="text-[#E7F2EF] font-semibold text-sm">
                 {author?.name}
@@ -248,7 +253,7 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
         {/* Blog Image */}
         {displayImage && (
           <div className="relative w-full aspect-[16/9] sm:aspect-[4/3] lg:aspect-[3/2] max-h-[400px] sm:max-h-[350px] md:max-h-[300px] overflow-hidden rounded-2xl">
-            {console.log("display image",displayImage)}
+            {console.log("display image", displayImage)}
             <Image
               src={blog?.image?.url}
               fill
@@ -373,7 +378,6 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
                 <img
                   src={previewImage}
                   alt="Preview"
-                  fill
                   className="object-cover"
                 />
               </div>

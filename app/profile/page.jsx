@@ -19,7 +19,7 @@ import dynamic from "next/dynamic";
 import sanitizeMarkdown from "../components/markdown/sanitizeMarkdown";
 
 import { Feather } from "lucide-react";
-import ProfileSidebar from "../components/user/ProfileSideBar";
+
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 const MarkdownPreview = dynamic(() => import("@uiw/react-markdown-preview"), {
   ssr: false,
@@ -29,7 +29,6 @@ const MySwal = withReactContent(Swal);
 
 export default function ProfilePage() {
   const { user, token } = useAuthStore();
-  console.log("lakjs", user);
   const [authChecked, setAuthChecked] = useState(false);
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -224,6 +223,8 @@ export default function ProfilePage() {
 
   return (
     <>
+
+
       <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#19183B] via-[#708993] to-[#E7F2EF] px-4 sm:px-6 md:px-8 lg:px-10 py-8">
         {/* Profile Header */}
         {/* Profile Header */}
@@ -238,25 +239,12 @@ export default function ProfilePage() {
             {/* Profile Info */}
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full md:w-auto">
               {
-                // <motion.div
-                //   className="relative h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 rounded-full border-4 border-[#A1C2BD] shadow-lg overflow-hidden"
-                //   whileHover={{ scale: 1.1 }}
-                // >
-                //   <Image
-                //     src={user?.avatar?.url || "/default.jpg"}
-                //     fill
-                //     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                //     alt="Profile Image"
-                //     className="object-cover"
-                //     priority
-                //   />
-                // </motion.div>
                 <motion.div
                   className="relative h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 rounded-full border-4 border-[#A1C2BD] shadow-lg overflow-hidden group cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                 >
                   <Image
-                    src={user?.avatar?.url || "/default.jpg"}
+                    src={user?.avatar?.url}
                     fill
                     alt="Profile Image"
                     className="object-cover"
@@ -420,7 +408,7 @@ export default function ProfilePage() {
             </motion.div>
           </div>
         )}
-        {/* Blogs Section */}
+        
         {/* Blogs Section */}
         <div className="max-w-7xl container mt-16 mx-auto px-2 sm:px-4 lg:px-8">
           {/* Section Heading */}
@@ -514,6 +502,7 @@ export default function ProfilePage() {
             </>
           )}
         </div>
+
         <div className="min-h-screen flex flex-col bg-gradient-to-br ...">
           {/* ===== Profile Header & Create Blog Modal & Blogs Section ===== */}
           {/* Your existing code here ... */}
@@ -527,6 +516,9 @@ export default function ProfilePage() {
           )}
         </div>
       </div>
+
+
+
       {/* Avatar Edit  */}
       {avatarOpen && (
         <div
@@ -605,11 +597,18 @@ export default function ProfilePage() {
                     setUploading(true);
                     const formData = new FormData();
                     formData.append("avatar", newAvatar);
+                    console.log("ye apka avatar", newAvatar);
+                    console.log("Ye Apka Chiku Chuku", formData);
+                    console.log("Ye Apki Entries");
+                    for (let [key, value] of formData.entries()) {
+                      console.log("val")
+                      console.log(key, value);
+                      
+                    }
 
                     const res = await api.patch("/users/avatar", formData, {
                       headers: {
                         Authorization: `Bearer ${token}`,
-                        "Content-Type": "multipart/form-data",
                       },
                     });
 

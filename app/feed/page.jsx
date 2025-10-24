@@ -7,6 +7,7 @@ import useAuthStore from "../utils/stores/authSore";
 import { motion } from "framer-motion";
 import useDebounce from "../components/utils/Debounce";
 
+
 import { Compass } from "lucide-react";
 import { Search, X } from "lucide-react";
 
@@ -187,25 +188,10 @@ export default function Feed() {
 
         {/* Blogs List */}
         <div className="flex flex-col gap-8">
-          {blogs.map((blog, index) => (
-            <motion.div
-              key={blog._id}
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              transition={{
-                duration: 0.5,
-                delay: index * 0.05,
-                type: "spring",
-                stiffness: 120,
-              }}
-              viewport={{ once: false, amount: 0.2 }}
-            >
-              {
-                console.log("Apka Blog", blog)
-              }
+          {blogs.map((blog) => (
+            <div key={blog._id}>
               <UserBlogCard blog={blog} currentUserId={curId} fullWidth />
-            </motion.div>
+            </div>
           ))}
         </div>
 

@@ -2,18 +2,18 @@
 
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { useParams } from "next/navigation";
 import api from "../../axios/axios";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import useAuthStore from "../../utils/stores/authSore";
+import { Clipboard, Check, Heart } from "lucide-react";
+import CommentSection from "../../components/blogs/CommentSection";
+
 const ReactMarkdown = dynamic(() => import("react-markdown"));
 const SyntaxHighlighter = dynamic(() =>
   import("react-syntax-highlighter").then((mod) => mod.Prism)
 );
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
-import useAuthStore from "../../utils/stores/authSore";
-import { Clipboard, Check, Heart, Share } from "lucide-react";
-import CommentSection from "../../components/blogs/CommentSection";
 
 export default function BlogDetailClient({ id }) {
   const { user, token } = useAuthStore();
@@ -24,7 +24,9 @@ export default function BlogDetailClient({ id }) {
   const [copied, setCopied] = useState(false);
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
+  const [isLiking, setIsLiking] = useState(false);
 
+  // fetch blog details
   useEffect(() => {
     if (!id) return;
 
@@ -33,11 +35,7 @@ export default function BlogDetailClient({ id }) {
         const res = await api.get(`/blogs/${id}`);
         setBlog(res.data);
 
-        // Initialize likes
-        const blogLikes =
-          res.data.likes
-            ?.map((like) => (like.user ? like.user.toString() : null))
-            .filter(Boolean) || [];
+        const blogLikes = res.data.likes?.map((like) => like.user?._id) || [];
         setLikesCount(blogLikes.length);
         setLiked(user && blogLikes.includes(user._id));
       } catch (err) {
@@ -49,7 +47,7 @@ export default function BlogDetailClient({ id }) {
     };
 
     fetchBlog();
-  }, [id]);
+  }, [id, user]);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -57,30 +55,33 @@ export default function BlogDetailClient({ id }) {
     setTimeout(() => setCopied(false), 1500);
   };
 
+  // Like/unlike logic
+  // Initialize likes
+  useEffect(() => {
+    if (blog && user) {
+      const likesArray = blog.likes || [];
+      setLikesCount(likesArray.length);
+      setLiked(likesArray.some((like) => like.user?._id === user._id));
+    }
+  }, [blog, user]);
+
+  // Handle like/unlike
   const handleLike = async () => {
-    if (!user) return alert("Login required to like!");
-
+    if (!user) {
+      alert("Login required to like a blog");
+      return;
+    }
     try {
-      // Optimistic update
-      setLiked(!liked);
-      setLikesCount(liked ? likesCount - 1 : likesCount + 1);
-
       const res = await api.put(
         `/blogs/like/${id}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
-
-      const updatedLikes =
-        res.data.likes?.map((like) => (like ? like : null)).filter(Boolean) ||
-        [];
+      const updatedLikes = res.data.likes || [];
       setLikesCount(updatedLikes.length);
-      setLiked(user && updatedLikes.includes(user._id));
+      setLiked(updatedLikes.some((like) => like.user?._id === user._id));
     } catch (err) {
-      console.error(err);
-      // rollback
-      setLiked(liked);
-      setLikesCount(likesCount);
+      console.error("Failed to like/unlike:", err);
     }
   };
 
@@ -207,9 +208,8 @@ export default function BlogDetailClient({ id }) {
         <div className="flex items-center gap-6 mb-4">
           <button
             onClick={handleLike}
-            className={`flex items-center gap-1.5 ${
-              liked ? "text-red-500" : "text-white"
-            }`}
+            disabled={isLiking}
+            className="flex items-center gap-1.5 text-white"
           >
             <Heart size={20} fill={liked ? "currentColor" : "none"} />
             <span>{likesCount}</span>
