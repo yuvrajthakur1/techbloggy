@@ -83,3 +83,13 @@ h3 {
   border-radius: 0.5rem;
   overflow-x: auto;
 }
+
+
+
+.swiper-pagination-bullet {
+  background: #fff !important;
+  opacity: 0.7;
+}
+.swiper-pagination-bullet-active {
+  background: #A1C2BD !important;
+}

@@ -22,7 +22,8 @@ export default function Navbar() {
 
 
   return (
-    <nav className="bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-50 transition-all">
+   <header>
+     <nav className="bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-50 transition-all">
       <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
         {/* Logo */}
         <Link
@@ -137,5 +138,6 @@ export default function Navbar() {
         </div>
       </div>
     </nav>
+   </header>
   );
 }

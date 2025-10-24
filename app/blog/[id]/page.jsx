@@ -52,12 +52,10 @@ export async function generateMetadata({ params }) {
 
 
 export  default async function BlogPage({ params }) {
-  
   const getParams = async(params)=>{
     const params1 = await params;
     return params1.id;
   }
   const id = await getParams(params);
-
   return <BlogDetailClient id={id} />;
 }
