@@ -259,7 +259,6 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
               fill
               alt={blog?.title}
               className="object-cover transition-transform duration-500 hover:scale-105"
-              unoptimized
             />
           </div>
         )}
@@ -267,17 +266,7 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
         {/* Content */}
         <div className="p-2 flex flex-col gap-3 flex-grow">
           <h2 className="text-[#A1C2BD] font-bold text-lg">{blog.title}</h2>
-          {/* <div className="text-[#E7F2EF]/90 text-sm leading-relaxed line-clamp-3">
-            <MarkdownPreview
-              source={editDescription || undefined}
-              style={{
-                backgroundColor: "#19183B",
-                color: "white",
-                padding: "0.5rem",
-                borderRadius: "0.5rem",
-              }}
-            />
-          </div> */}
+         
           <button
             onClick={() => router.push(`/blog/${_id}`)}
             className="text-[#708993] hover:text-[#A1C2BD] flex gap-1 items-center"
