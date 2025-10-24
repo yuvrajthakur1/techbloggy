@@ -6,8 +6,6 @@ import UserBlogCard from "../components/user/UserBlogCard";
 import useAuthStore from "../utils/stores/authSore";
 import { motion } from "framer-motion";
 import useDebounce from "../components/utils/Debounce";
-
-
 import { Compass } from "lucide-react";
 import { Search, X } from "lucide-react";
 
@@ -85,73 +83,52 @@ export default function Feed() {
     <div className="min-h-screen bg-gradient-to-br from-[#19183B] via-[#708993] to-[#E7F2EF] px-4 py-8 sm:px-6 md:px-10">
       <div className="max-w-4xl mx-auto">
         {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: -40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-16"
-        >
-          {/* Animated Gradient Heading with Compass */}
-          <div className="flex items-center justify-center gap-3 sm:gap-4">
-            <motion.h1
-              className="text-3xl sm:text-6xl md:text-7xl font-extrabold bg-gradient-to-r from-[#A1C2BD] via-[#708993] to-[#19183B] bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
-              animate={{
-                backgroundPosition: ["200% center", "0% center"],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                repeatType: "mirror",
-                ease: "easeInOut",
-              }}
-              style={{ backgroundSize: "200% auto" }}
-            >
-              Discover Insights
-            </motion.h1>
+        {/* Animated Gradient Heading */}
+<motion.div
+  initial={{ opacity: 0, y: -40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+  className="text-center mb-16"
+>
+  <motion.h1
+    className="text-3xl sm:text-6xl md:text-7xl font-extrabold bg-gradient-to-r from-[#A1C2BD] via-[#708993] to-[#19183B] bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
+    animate={{
+      backgroundPosition: ["200% center", "0% center"],
+    }}
+    transition={{
+      duration: 5,
+      repeat: Infinity,
+      repeatType: "mirror",
+      ease: "easeInOut",
+    }}
+    style={{ backgroundSize: "200% auto" }}
+  >
+    Discover Insights
+  </motion.h1>
 
-            {/* Animated Compass Icon */}
-            <motion.span
-              initial={{ rotate: -15, opacity: 0 }}
-              whileInView={{
-                rotate: [-15, 15, -15],
-                opacity: 1,
-              }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 3.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
-              <Compass
-                className="h-6 w-6 sm:h-9 sm:w-9 text-[#A1C2BD] drop-shadow-lg"
-                strokeWidth={1.6}
-              />
-            </motion.span>
-          </div>
+  {/* Soft fade-in tagline */}
+  <motion.p
+    className="mt-3 text-[#A1C2BD]/80 sm:text-lg text-sm tracking-wide"
+    initial={{ opacity: 0, y: 10 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ delay: 0.3, duration: 0.8 }}
+  >
+    Dive into trending blogs, stories, and more.
+  </motion.p>
 
-          {/* Soft fade-in tagline */}
-          <motion.p
-            className="mt-3 text-[#A1C2BD]/80 sm:text-lg text-sm tracking-wide"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            Dive into trending blogs, stories, and more.
-          </motion.p>
+  {/* Underline flourish */}
+  <motion.span
+    className="block mx-auto mt-4 w-24 h-[3px] bg-gradient-to-r from-[#19183B] via-[#708993] to-[#A1C2BD] rounded-full shadow-md"
+    initial={{ scaleX: 0 }}
+    whileInView={{ scaleX: 1 }}
+    viewport={{ once: true }}
+    transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
+    style={{ transformOrigin: "center" }}
+  />
+</motion.div>
 
-          {/* Underline flourish */}
-          <motion.span
-            className="block mx-auto mt-4 w-24 h-[3px] bg-gradient-to-r from-[#19183B] via-[#708993] to-[#A1C2BD] rounded-full shadow-md"
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.6, ease: "easeOut" }}
-            style={{ transformOrigin: "center" }}
-          />
-        </motion.div>
 
         {/* Search & Filter */}
         <div className="flex flex-col sm:flex-row gap-4 mb-10 items-stretch">
@@ -227,4 +204,5 @@ export default function Feed() {
       </div>
     </div>
   );
+
 }
