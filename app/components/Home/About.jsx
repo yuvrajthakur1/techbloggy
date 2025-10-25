@@ -13,12 +13,16 @@ export default function AboutPreview() {
       <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center md:items-start gap-10 relative z-10">
         {/* Left: Text (always left aligned) */}
         <div className="w-full md:w-1/2 text-left">
-          <h2 className="text-2xl sm:text-3xl text-center md:text-4xl font-extrabold text-[#19183B] mb-5 leading-snug">
-            💡 What is <span className="text-[#708993]">TechBloggy?</span>
-          </h2>
+        
+          <div className="text-left mb-10 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl font-semibold text-[#19183B] inline-block relative pb-3">
+              💡 What is TechBloggy?
+              <span className="absolute left-1/2 bottom-0 w-48 h-[4px] bg-gradient-to-r from-[#19183B] via-[#708993] to-[#A1C2BD] rounded-full transform -translate-x-1/2"></span>
+            </h2>
+          </div>
           <p className="text-[#19183B]/80 text-base sm:text-lg leading-relaxed mb-6">
-            TechBloggy is your go-to platform for quick, clear, and practical web
-            development tips. We help developers learn React, JavaScript,
+            TechBloggy is your go-to platform for quick, clear, and practical
+            web development tips. We help developers learn React, JavaScript,
             Tailwind, Next.js, and more — in a fun and interactive way.
           </p>
           <ul className="space-y-2 text-[#19183B]/70 font-medium text-sm sm:text-base">
@@ -26,12 +30,6 @@ export default function AboutPreview() {
             <li>• Hands-on code examples</li>
             <li>• Stay updated with the latest tech trends</li>
           </ul>
-
-          <div className="mt-8">
-            <button className="px-6 py-3 rounded-xl bg-[#19183B] text-[#E7F2EF] font-semibold hover:bg-[#708993] transition-colors text-sm sm:text-base">
-              Explore Blogs
-            </button>
-          </div>
         </div>
 
         {/* Right: Illustration/Image */}
@@ -40,7 +38,7 @@ export default function AboutPreview() {
           <div className="absolute -top-6 -left-6 w-20 h-20 bg-[#A1C2BD]/40 rotate-12 rounded-lg hidden md:block"></div>
           <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-[#708993]/30 rounded-full hidden md:block"></div>
 
-          <div className="relative w-full max-w-sm sm:max-w-md md:max-w-none md:w-80 md:h-80 aspect-square rounded-2xl overflow-hidden shadow-2xl border-[3px] border-[#A1C2BD] bg-[#E7F2EF]">
+          <div className="relative w-full max-w-sm sm:max-w-md md:max-w-none md:w-80 md:h-80 aspect-square rounded-2xl md:block hidden overflow-hidden shadow-2xl border-[3px] border-[#A1C2BD] bg-[#E7F2EF]">
             <Image
               src="/About.webp"
               alt="About TechBloggy"

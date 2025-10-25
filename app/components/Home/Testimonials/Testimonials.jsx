@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import Image from "next/image";
@@ -12,17 +10,21 @@ import testimonials from "./testimonials.json";
 
 export default function Testimonials() {
   return (
-    <section className="py-16 relative overflow-hidden" style={{ backgroundColor: "#E7F2EF" }}>
+    <section
+      className="py-16 relative overflow-hidden"
+      style={{ backgroundColor: "#E7F2EF" }}
+    >
       {/* Decorative circles */}
       <div className="absolute -top-16 -left-16 w-40 h-40 bg-[#A1C2BD] rounded-full opacity-20 animate-pulse"></div>
       <div className="absolute -bottom-16 -right-16 w-60 h-60 bg-[#708993] rounded-full opacity-20 animate-pulse"></div>
 
       <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#19183B] inline-block relative pb-3 mb-10">
-          What Our Readers Say
-          <span className="absolute left-1/2 bottom-0 w-28 h-[4px] bg-gradient-to-r from-[#19183B] via-[#708993] to-[#A1C2BD] rounded-full transform -translate-x-1/2 shadow-md"></span>
-        </h2>
-
+        <div className="text-center mb-10 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl font-semibold text-[#19183B] inline-block relative pb-3">
+            What Our Reader's Say
+            <span className="absolute left-1/2 bottom-0 w-48 h-[4px] bg-gradient-to-r from-[#19183B] via-[#708993] to-[#A1C2BD] rounded-full transform -translate-x-1/2"></span>
+          </h2>
+        </div>
         <Swiper
           modules={[Pagination, Autoplay]}
           spaceBetween={30}
@@ -31,7 +33,7 @@ export default function Testimonials() {
           autoplay={{ delay: 4000, disableOnInteraction: false }}
           breakpoints={{
             768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 }
+            1024: { slidesPerView: 3 },
           }}
           className="mt-10"
         >
@@ -58,7 +60,9 @@ export default function Testimonials() {
                     <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-[#A1C2BD] rounded-full animate-pulse border border-white"></span>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-[#E7F2EF]">{item.name}</h3>
+                    <h3 className="text-lg font-semibold text-[#E7F2EF]">
+                      {item.name}
+                    </h3>
                     <p className="text-sm text-[#708993]">{item.role}</p>
                   </div>
                 </div>
