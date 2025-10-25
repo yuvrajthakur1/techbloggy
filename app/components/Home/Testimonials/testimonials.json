@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Aarav Mehta",
+    "avatar": "https://randomuser.me/api/portraits/men/45.jpg",
+    "role": "Frontend Developer",
+    "feedback": "TechBloggy has become my go-to platform for quick React and JavaScript tips. The articles are short, clear, and practical!"
+  },
+  {
+    "id": 2,
+    "name": "Priya Sharma",
+    "avatar": "https://randomuser.me/api/portraits/women/68.jpg",
+    "role": "Full Stack Engineer",
+    "feedback": "I love how TechBloggy explains advanced concepts like Next.js and Tailwind CSS in such a beginner-friendly way. Kudos to the team!"
+  },
+  {
+    "id": 3,
+    "name": "Rohan Verma",
+    "avatar": "https://randomuser.me/api/portraits/men/22.jpg",
+    "role": "Software Intern",
+    "feedback": "Thanks to TechBloggy, I improved my coding confidence and even cracked my first internship. Amazing resource for students!"
+  },
+  {
+    "id": 4,
+    "name": "Sneha Patel",
+    "avatar": "https://randomuser.me/api/portraits/women/52.jpg",
+    "role": "UI/UX Designer",
+    "feedback": "I really appreciate how well-structured and visually appealing TechBloggy’s articles are. It’s a treat for both designers and developers!"
+  },
+  {
+    "id": 5,
+    "name": "Karan Singh",
+    "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
+    "role": "Backend Developer",
+    "feedback": "The Node.js and MongoDB tutorials here helped me clear my basics and start building real-world APIs confidently. Great job, team!"
+  },
+  {
+    "id": 6,
+    "name": "Neha Gupta",
+    "avatar": "https://randomuser.me/api/portraits/women/12.jpg",
+    "role": "Tech Blogger",
+    "feedback": "TechBloggy’s writing style is super engaging! I always find inspiration and new ideas for my own blogs after visiting here."
+  }
+]
