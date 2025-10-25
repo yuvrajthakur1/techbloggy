@@ -12,20 +12,20 @@ export default function AboutPreview() {
 
       <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center md:items-start gap-10 relative z-10">
         {/* Left: Text (always left aligned) */}
-        <div className="w-full md:w-1/2 text-left">
+        <div className="w-full md:w-1/2 text-center">
         
-          <div className="text-left mb-10 sm:mb-12">
+          <div className="mb-10 sm:mb-12">
             <h2 className="text-3xl sm:text-4xl font-semibold text-[#19183B] inline-block relative pb-3">
               💡 What is TechBloggy?
               <span className="absolute left-1/2 bottom-0 w-48 h-[4px] bg-gradient-to-r from-[#19183B] via-[#708993] to-[#A1C2BD] rounded-full transform -translate-x-1/2"></span>
             </h2>
           </div>
-          <p className="text-[#19183B]/80 text-base sm:text-lg leading-relaxed mb-6">
+          <p className="text-[#19183B]/80 text-left text-sm sm:text-base leading-relaxed mb-6">
             TechBloggy is your go-to platform for quick, clear, and practical
             web development tips. We help developers learn React, JavaScript,
             Tailwind, Next.js, and more — in a fun and interactive way.
           </p>
-          <ul className="space-y-2 text-[#19183B]/70 font-medium text-sm sm:text-base">
+          <ul className="space-y-2 text-[#19183B]/70 text-left font-medium text-sm sm:text-base">
             <li>• Short, beginner-friendly tutorials</li>
             <li>• Hands-on code examples</li>
             <li>• Stay updated with the latest tech trends</li>

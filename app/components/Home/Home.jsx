@@ -12,15 +12,25 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Hero from "./Hero";
 import AboutPreview from "./About"
+import NewsLetter from "./Letter"
+import CategorySection from "./Tags"
+import SectionDivider from "./SectionDivider"
 
 export default function Home({ blogs }) {
   const loading = !blogs || blogs.length === 0;
   return (
-    <div className="bg-gradient-to-br from-[#19183B] via-[#708993] to-[#E7F2EF] min-h-screen flex flex-col">
+    <div className="bg-[#E7F2EF] min-h-screen flex flex-col">
        <Hero/>
+       <SectionDivider/>
       <LatestBlogs loading={loading} blogs ={blogs}/>
+       <SectionDivider/>
       <AboutPreview/>
+       <SectionDivider/>
       <Testimonials />
+       <SectionDivider/>
+      <NewsLetter/>
+       <SectionDivider/>
+      <CategorySection/>
     </div>
   );
 }

@@ -14,11 +14,10 @@ export default function Testimonials() {
       className="py-16 relative overflow-hidden"
       style={{ backgroundColor: "#E7F2EF" }}
     >
-      {/* Decorative circles */}
-      <div className="absolute -top-16 -left-16 w-40 h-40 bg-[#A1C2BD] rounded-full opacity-20 animate-pulse"></div>
-      <div className="absolute -bottom-16 -right-16 w-60 h-60 bg-[#708993] rounded-full opacity-20 animate-pulse"></div>
-
       <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
+        {/* Decorative circles */}
+        <div className="absolute -top-16 -left-16 w-40 h-40 bg-[#A1C2BD] rounded-full opacity-20 animate-pulse"></div>
+        <div className="absolute -bottom-16 -right-16 w-60 h-60 bg-[#708993] rounded-full opacity-20 animate-pulse"></div>
         <div className="text-center mb-10 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl font-semibold text-[#19183B] inline-block relative pb-3">
             What Our Reader's Say
