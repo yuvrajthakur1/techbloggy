@@ -54,7 +54,7 @@ export default function Testimonials() {
                       height={48}
                       className="rounded-full object-cover border-2"
                       style={{ borderColor: "#A1C2BD" }}
-                      loading="lazy"
+                      unoptimized
                     />
                     <span className="absolute -bottom-1 -right-1 w-3 h-3 bg-[#A1C2BD] rounded-full animate-pulse border border-white"></span>
                   </div>
