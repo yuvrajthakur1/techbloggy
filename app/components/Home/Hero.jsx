@@ -15,7 +15,7 @@ export default function Hero() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
             Welcome to{" "}
             <span className="bg-gradient-to-r from-[#A1C2BD] via-[#708993] to-[#19183B] bg-clip-text text-transparent">
-              TechBloggy
+              CodeHorizon
             </span>
           </h1>
 

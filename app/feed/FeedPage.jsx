@@ -287,11 +287,10 @@ export default function Feed() {
   return (
     <section className="relative min-h-screen bg-[#E7F2EF] overflow-hidden px-4 py-8 sm:px-6 md:px-10">
       {/* Decorative Shapes */}
-      <div className="absolute -top-16 -left-16 w-72 h-72 bg-[#A1C2BD]/30 rounded-full blur-3xl animate-pulse-slow"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#708993]/20 rounded-full blur-2xl animate-pulse-slow"></div>
-      <div className="absolute top-1/2 left-1/2 w-40 h-40 bg-[#A1C2BD]/10 rotate-45 rounded-2xl blur-xl -translate-x-1/2 -translate-y-1/2 animate-pulse-slow"></div>
-      <div className="absolute top-1/4 right-1/4 w-24 h-24 bg-[#708993]/20 rounded-lg rotate-12 blur-md animate-pulse-slow"></div>
-      <div className="absolute bottom-24 left-1/3 w-16 h-16 bg-[#19183B]/5 rotate-6 rounded-md blur-sm animate-pulse-slow"></div>
+      <div className="absolute -top-16 -left-16 md:w-72 md:h-72 w-48 h-48 bg-[#A1C2BD]/50 rounded-full  animate-pulse-slow"></div>
+      <div className="absolute bottom-0 right-0 md:w-72 md:h-72 w-48 h-48 bg-[#708993]/50 rounded-full animate-pulse-slow"></div>
+      <div className="absolute top-40 right-8 md:w-40 md:h-40 w-20 h-20 bg-[#A1C2BD]/50 rotate-45 rounded-2xl  -translate-x-1/2 -translate-y-1/2 animate-pulse-slow"></div>
+    
 
       <div className="relative max-w-4xl mx-auto z-10">
         {/* Heading */}

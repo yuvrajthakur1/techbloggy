@@ -15,13 +15,13 @@ import AboutPreview from "./About"
 import NewsLetter from "./Letter"
 import CategorySection from "./Tags"
 import SectionDivider from "./SectionDivider"
+import ContactCTA from "./Contact"
 
 export default function Home({ blogs }) {
   const loading = !blogs || blogs.length === 0;
   return (
     <div className="bg-[#E7F2EF] min-h-screen flex flex-col">
        <Hero/>
-      <SectionDivider />
       <LatestBlogs loading={loading} blogs ={blogs}/>
        <SectionDivider/>
       <AboutPreview/>
