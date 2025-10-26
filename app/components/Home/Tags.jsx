@@ -13,15 +13,13 @@ export default function CategoriesSection() {
 
       <div className="max-w-4xl mx-auto relative z-10">
         {/* Heading */}
-        <motion.h2
-          className="text-3xl sm:text-4xl font-extrabold text-[#19183B] mb-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          Popular Tags
-        </motion.h2>
+         <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#19183B] inline-block relative pb-3">
+            Popular Tags
+            <span className="absolute left-1/2 bottom-0 w-48 h-[4px] bg-gradient-to-r from-[#19183B] via-[#708993] to-[#A1C2BD] rounded-full transform -translate-x-1/2"></span>
+          </h2>
+         
+        </div>
 
         {/* Tags Container */}
         <div className="flex flex-wrap justify-center gap-3">
@@ -41,7 +39,7 @@ export default function CategoriesSection() {
         </div>
 
         <p className="text-center mt-6 text-sm text-[#708993]">
-          Click any tag to explore blogs (dummy for now)
+          Click any tag to explore blogs 
         </p>
       </div>
     </section>

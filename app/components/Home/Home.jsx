@@ -21,7 +21,7 @@ export default function Home({ blogs }) {
   return (
     <div className="bg-[#E7F2EF] min-h-screen flex flex-col">
        <Hero/>
-       <SectionDivider/>
+      <SectionDivider />
       <LatestBlogs loading={loading} blogs ={blogs}/>
        <SectionDivider/>
       <AboutPreview/>

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import SectionDivider from "./SectionDivider";
 
 export default function Hero() {
   return (
@@ -29,7 +30,9 @@ export default function Hero() {
             </Button>
           </Link>
         </div>
+    
       </section>
+      
     </>
   );
 }
