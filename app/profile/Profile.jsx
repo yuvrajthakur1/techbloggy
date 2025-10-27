@@ -6,7 +6,7 @@ import api from "../axios/axios";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Plus, X, Upload, BarChart2 } from "lucide-react";
+import { Plus, X, Upload, BarChart2, ChartBar, ChartArea } from "lucide-react";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -21,6 +21,7 @@ import sanitizeMarkdown from "../components/markdown/sanitizeMarkdown";
 
 import { Feather } from "lucide-react";
 import SettingOpen from "./SettingOpen";
+import AIWriterModal from "../components/AiWriteModal";
 
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 const MarkdownPreview = dynamic(() => import("@uiw/react-markdown-preview"), {
@@ -39,6 +40,7 @@ export default function ProfilePage() {
   const [followersModalOpen, setFollowersModalOpen] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [settingOpen, setSettingOpen] = useState(false);
+  const [chatOpen,setChatOpen] = useState(false);
 
   // Avatar KI USe States
   const [avatarOpen, setAvatarOpen] = useState(false);
@@ -403,6 +405,16 @@ export default function ProfilePage() {
                 className="w-full sm:w-auto bg-[#2D2C70] hover:bg-[#22215E] text-[#E7F2EF] font-semibold px-6 py-2 rounded-full shadow-lg flex items-center gap-2 transition-all duration-300"
               >
                 <Settings size={20} />
+              </Button>
+
+              {/* Ai Chat */}
+              <Button
+                onClick={() => {
+                  setChatOpen(true);
+                }}
+                className="w-full sm:w-auto bg-[#2D2C70] hover:bg-[#22215E] text-[#E7F2EF] font-semibold px-6 py-2 rounded-full shadow-lg flex items-center gap-2 transition-all duration-300"
+              >
+                <ChartArea size={20} />
               </Button>
             </motion.div>
           </div>
@@ -769,6 +781,12 @@ export default function ProfilePage() {
           setSettingOpen={setSettingOpen}
         />
       )}
+
+     {/* ChatBot OPen */}
+      {
+   
+       chatOpen &&  <AIWriterModal open={chatOpen} setChatOpen={setChatOpen}/>
+      }
     </>
   );
 }

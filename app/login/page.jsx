@@ -36,7 +36,7 @@ export default function Login() {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#19183B] via-[#708993] to-[#A1C2BD] flex items-center justify-center py-16 px-4">
+    <div className="min-h-screen bg-[#E7F2EF] flex items-center justify-center py-16 px-4">
       <form
         onSubmit={handleSubmit}
         className="bg-[#222B45] p-10 rounded-3xl shadow-2xl w-full max-w-md border border-white/10"
