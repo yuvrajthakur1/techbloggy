@@ -1,7 +1,7 @@
 import Footer from "./components/Footer";
 import Navbar from "./components/NavBar";
 import "./globals.css";
-import GlobalLoader from "./components/global/GlobalIndicator"
+
 import { Playfair_Display, Lora } from "next/font/google";
 import "./globals.css";
 
@@ -30,10 +30,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${lora.variable}`}>
       <head>
-       
       </head>
       <body >
-      
         <Navbar />
         <main>
           {children}

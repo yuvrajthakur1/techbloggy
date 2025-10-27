@@ -11,6 +11,7 @@ import BlogCard from "../BlogCard";
 import { ArrowRight } from "lucide-react";
 
 export default function LatestBlogs({ blogs, loading }) {
+  console.log("Production Ke LIye Blogs",blogs);
   return (
     <section className="relative py-20 bg-[#E7F2EF] overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
