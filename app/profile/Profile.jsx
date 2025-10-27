@@ -225,16 +225,19 @@ export default function ProfilePage() {
     <>
 
 
-      <div className="min-h-screen flex flex-col bg-bg-[#E7F2EF]  px-4 sm:px-6 md:px-8 lg:px-10 py-8">
+      <div className="min-h-screen flex flex-col bg-[#E7F2EF]  px-4 sm:px-6 md:px-8 lg:px-10 py-8">
         {/* Profile Header */}
         {/* Profile Header */}
+        
 
         <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6, type: "spring", stiffness: 120 }}
-          className="w-full max-w-5xl mx-auto bg-[#19183B] rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 lg:p-12 border border-[#708993]/20 mb-12"
+          className="w-full max-w-5x relative oveflow-hidden mx-auto bg-[#19183B] rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 lg:p-12 border border-[#708993]/20 mb-12"
         >
+           <div className="absolute -top-6  -left-6 w-20 h-20 bg-[#A1C2BD]/40 rotate-12 rounded-lg hidden md:block"></div>
+          <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-[#708993]/30 rounded-full hidden md:block"></div>
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-12 p-4 sm:p-6 bg-gradient-to-br from-[#19183B] via-[#22215E] to-[#2D2C70] rounded-2xl shadow-2xl border border-[#708993]/20">
             {/* Profile Info */}
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full md:w-auto">
@@ -466,7 +469,7 @@ export default function ProfilePage() {
           ) : (
             <>
               <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
                 initial="hidden"
                 animate="visible"
                 variants={{

@@ -96,7 +96,7 @@ export default function PublicProfilePage() {
 
   if (profileLoading) {
     return (
-      <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-[#19183B] via-[#708993] to-[#E7F2EF] px-4 py-8">
+      <div className="min-h-screen flex flex-col justify-center items-center  px-4 py-8">
         <p className="text-white text-xl mb-4">Loading profile...</p>
         <div className="w-12 h-12 border-4 border-[#A1C2BD] border-t-transparent rounded-full animate-spin"></div>
       </div>
@@ -112,7 +112,7 @@ export default function PublicProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#19183B] via-[#708993] to-[#E7F2EF] px-4 py-8">
+    <div className="min-h-screen bg-[#E7F2EF] px-4 py-8">
       {/* Profile Header */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
@@ -186,7 +186,7 @@ export default function PublicProfilePage() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl md:text-4xl font-semibold text-white inline-block relative pb-3">
+          <h2 className="text-3xl md:text-4xl font-semibold text-[#19183B] inline-block relative pb-3">
             {profileUser?.name}'s Blogs 📰
             <span className="absolute left-1/2 bottom-0 w-28 h-[4px] bg-gradient-to-r from-[#19183B] via-[#708993] to-[#A1C2BD] rounded-full transform -translate-x-1/2 shadow-md"></span>
           </h2>

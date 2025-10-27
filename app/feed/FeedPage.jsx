@@ -361,9 +361,9 @@ export default function Feed() {
         </div>
 
         {/* Blogs List */}
-        <div className="flex flex-col gap-8 relative z-10">
+        <div className="flex flex-col  gap-8 relative z-10">
           {blogs.map((blog) => (
-            <div key={blog._id}>
+            <div key={blog._id} className="flex justify-center">
               <UserBlogCard blog={blog} currentUserId={curId} fullWidth />
             </div>
           ))}

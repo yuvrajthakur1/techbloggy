@@ -40,7 +40,7 @@ export default function UserDashboard() {
   }, [token]);
 
   const containerClasses =
-    "min-h-[calc(100vh-80px)] mx-auto p-6 bg-gradient-to-br from-[#19183B] via-[#708993] to-[#E7F2EF] text-white";
+    "min-h-[calc(100vh-80px)] mx-auto p-6 bg-[#E7F2EF]text-white";
 
   if (loading) {
     return (
@@ -80,39 +80,39 @@ export default function UserDashboard() {
               alt={user.name || "Avatar"}
               width={80}
               height={80}
-              className="rounded-full object-cover"
+              className="rounded-full border-[#19183B] border-2 object-cover"
             />
           )}
           <div>
-            <h1 className="text-3xl font-bold">{user?.name}</h1>
-            <p className="text-gray-300">{user?.email}</p>
+            <h1 className="text-3xl text-[#19183B] font-bold">{user?.name}</h1>
+            <p className="text-gray-500">{user?.email}</p>
           </div>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-          <div className="p-4 bg-[#1E1D40]/80 rounded-xl text-center shadow-md">
-            <p className="text-2xl font-bold">{stats?.blogsCount || 0}</p>
+          <div className="p-4 bg-[#19183B] rounded-xl text-center shadow-md">
+            <p className="text-2xl text-gray-300 font-bold">{stats?.blogsCount || 0}</p>
             <p className="text-gray-300">Blogs</p>
           </div>
-          <div className="p-4 bg-[#1E1D40]/80 rounded-xl text-center shadow-md">
-            <p className="text-2xl font-bold">{stats?.followersCount || 0}</p>
+          <div className="p-4 bg-[#19183B] rounded-xl text-center shadow-md">
+            <p className="text-2xl text-gray-300 font-bold">{stats?.followersCount || 0}</p>
             <p className="text-gray-300">Followers</p>
           </div>
-          <div className="p-4 bg-[#1E1D40]/80 rounded-xl text-center shadow-md">
-            <p className="text-2xl font-bold">{stats?.followingCount || 0}</p>
+          <div className="p-4 bg-[#19183B] rounded-xl text-center shadow-md">
+            <p className="text-2xl text-gray-300 font-bold">{stats?.followingCount || 0}</p>
             <p className="text-gray-300">Following</p>
           </div>
         </div>
 
         {/* My Blogs */}
         <div className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">My Blogs</h2>
+          <h2 className="text-2xl text-[#19183B] font-semibold mb-4">My Blogs</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {blogs?.map((b) => (
               <motion.div
                 key={b._id}
-                className="bg-[#1E1D40]/80 rounded-xl shadow-md overflow-hidden flex flex-col"
+                className="bg-[#19183B] rounded-xl shadow-md overflow-hidden flex flex-col"
                 whileHover={{ scale: 1.03 }}
               >
                 {b.image && (
