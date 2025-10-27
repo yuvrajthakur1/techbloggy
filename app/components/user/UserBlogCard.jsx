@@ -192,7 +192,7 @@ export default function UserBlogCard({ blog, onDelete, onUpdate }) {
   return (
     <>
       {/* Card */}
-      <div className="flex flex-col max-w-2xl md:min-w-sm bg-[#19183B] rounded-2xl shadow-2xl border border-[#708993]/40">
+      <div className="flex flex-col max-w-2xl lg:min-w-sm bg-[#19183B] rounded-2xl shadow-2xl border border-[#708993]/40">
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-[#708993]/20">
           <div className="flex items-center gap-3">

@@ -40,7 +40,7 @@ export default function UserDashboard() {
   }, [token]);
 
   const containerClasses =
-    "min-h-[calc(100vh-80px)] mx-auto p-6 bg-[#E7F2EF]text-white";
+    "min-h-[calc(100vh-80px)] mx-auto p-6 bg-[#E7F2EF] text-white";
 
   if (loading) {
     return (

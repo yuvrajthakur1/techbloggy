@@ -13,12 +13,14 @@ import withReactContent from "sweetalert2-react-content";
 import UserBlogCard from "../components/user/UserBlogCard";
 import FollowersModal from "../components/user/FollowersModal";
 import { useRouter, userRouter } from "next/navigation";
+import { Settings } from "lucide-react";
 
 // ✅ Dynamic import for Markdown Editor (Next.js SSR safe)
 import dynamic from "next/dynamic";
 import sanitizeMarkdown from "../components/markdown/sanitizeMarkdown";
 
 import { Feather } from "lucide-react";
+import SettingOpen from "./SettingOpen";
 
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 const MarkdownPreview = dynamic(() => import("@uiw/react-markdown-preview"), {
@@ -36,6 +38,7 @@ export default function ProfilePage() {
   const [followingCount, setFollowingCount] = useState(user?.following?.length);
   const [followersModalOpen, setFollowersModalOpen] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
+  const [settingOpen, setSettingOpen] = useState(false);
 
   // Avatar KI USe States
   const [avatarOpen, setAvatarOpen] = useState(false);
@@ -44,11 +47,37 @@ export default function ProfilePage() {
   const [uploading, setUploading] = useState(false);
 
   const [blogOpen, setBlogOpen] = useState(false);
-  const [form, setForm] = useState({ title: "", description: "", image: null });
+  // add new useState for tags
+  const [form, setForm] = useState({
+    title: "",
+    description: "",
+    image: null,
+    tags: [],
+  });
+  const [tagInput, setTagInput] = useState("");
   const [previewImage, setPreviewImage] = useState(null);
   const [saving, setSaving] = useState(false);
   const [visibleCount, setVisibleCount] = useState(4);
   const router = useRouter();
+
+  // inside handleChange (no change needed except below added one)
+  const handleTagAdd = (e) => {
+    e.preventDefault();
+    if (tagInput.trim() && !form.tags.includes(tagInput.trim())) {
+      setForm((prev) => ({
+        ...prev,
+        tags: [...prev.tags, tagInput.trim()],
+      }));
+    }
+    setTagInput("");
+  };
+
+  const handleTagRemove = (tagToRemove) => {
+    setForm((prev) => ({
+      ...prev,
+      tags: prev.tags.filter((tag) => tag !== tagToRemove),
+    }));
+  };
 
   const cardVariant = {
     hidden: { opacity: 0, y: 20 },
@@ -73,8 +102,6 @@ export default function ProfilePage() {
       const [blogsRes, followersRes, followingRes, profileUser] =
         await Promise.all([
           api.get(`/blogs/user/${user._id}`),
-          // api.get(`/users/${user._id}/followers`),
-          // api.get(`/users/${user._id}/following`),
           api.get(`/users/${user._id}`),
         ]);
       console.log("Profile", profileUser);
@@ -132,28 +159,83 @@ export default function ProfilePage() {
     }
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   // fix small syntax in warning
+  //   if (!form.title || !form.description)
+  //     return MySwal.fire({
+  //       icon: "warning",
+  //       title: "Oops!",
+  //       text: "Please fill all fields",
+  //       confirmButtonText: "Ok",
+  //       background: "#19183B",
+  //       color: "#E7F2EF",
+  //       confirmButtonColor: "#708993",
+  //       buttonsStyling: true,
+  //       scrollbarPadding: false,
+  //       allowOutsideClick: false,
+  //     });
+  //   try {
+  //     setSaving(true);
+  //     const formData = new FormData();
+  //     formData.append("title", form.title);
+  //     formData.append("description", form.description); // markdown text
+  //     if (form.image) formData.append("image", form.image);
+
+  //     await api.post("/blogs", formData, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
+
+  //     MySwal.fire({
+  //       icon: "success",
+  //       title: "Created!",
+  //       text: "Blog created successfully",
+  //       confirmButtonColor: "#A1C2BD",
+  //       scrollbarPadding: false, // ⚡ important
+  //       allowOutsideClick: false, // optional
+  //     });
+
+  //     setBlogOpen(false);
+  //     setForm({ title: "", description: "", image: null });
+  //     setPreviewImage(null);
+  //     fetchProfileData();
+  //   } catch (err) {
+  //     console.error(err);
+  //     MySwal.fire({
+  //       icon: "error",
+  //       title: "Error!",
+  //       text: "Failed to create blog",
+  //       confirmButtonColor: "#A1C2BD",
+  //       scrollbarPadding: false, // ⚡ important
+  //       allowOutsideClick: false, // optional
+  //     });
+  //   } finally {
+  //     setSaving(false);
+  //   }
+  // };
+
+  // ✅ Updated handleSubmit
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.title || !form.description)
-      returnMySwal.fire({
+      return MySwal.fire({
         icon: "warning",
         title: "Oops!",
         text: "Please fill all fields",
         confirmButtonText: "Ok",
-        background: "#19183B", // popup ka background
-        color: "#E7F2EF", // title + text ka color
-        confirmButtonColor: "#708993", // button ka color
-        buttonsStyling: true, // enable SweetAlert2 styling
-        scrollbarPadding: false,
-        allowOutsideClick: false,
+        background: "#19183B",
+        color: "#E7F2EF",
+        confirmButtonColor: "#708993",
+        buttonsStyling: true,
       });
 
     try {
       setSaving(true);
       const formData = new FormData();
       formData.append("title", form.title);
-      formData.append("description", form.description); // markdown text
+      formData.append("description", form.description);
       if (form.image) formData.append("image", form.image);
+      formData.append("tags", JSON.stringify(form.tags)); // ✅ new line
 
       await api.post("/blogs", formData, {
         headers: { Authorization: `Bearer ${token}` },
@@ -164,12 +246,12 @@ export default function ProfilePage() {
         title: "Created!",
         text: "Blog created successfully",
         confirmButtonColor: "#A1C2BD",
-        scrollbarPadding: false, // ⚡ important
-        allowOutsideClick: false, // optional
+        scrollbarPadding: false,
+        allowOutsideClick: false,
       });
 
       setBlogOpen(false);
-      setForm({ title: "", description: "", image: null });
+      setForm({ title: "", description: "", image: null, tags: [] });
       setPreviewImage(null);
       fetchProfileData();
     } catch (err) {
@@ -179,14 +261,11 @@ export default function ProfilePage() {
         title: "Error!",
         text: "Failed to create blog",
         confirmButtonColor: "#A1C2BD",
-        scrollbarPadding: false, // ⚡ important
-        allowOutsideClick: false, // optional
       });
     } finally {
       setSaving(false);
     }
   };
-
   const handleDelete = (id) =>
     setBlogs((prev) => prev.filter((b) => b._id !== id));
   const handleUpdate = (updatedBlog) =>
@@ -223,20 +302,17 @@ export default function ProfilePage() {
 
   return (
     <>
-
-
-      <div className="min-h-screen flex flex-col bg-[#E7F2EF]  px-4 sm:px-6 md:px-8 lg:px-10 py-8">
+      <div className="min-h-screen flex  flex-col bg-[#E7F2EF]  px-4 sm:px-6 md:px-8 lg:px-10 py-8">
         {/* Profile Header */}
         {/* Profile Header */}
-        
 
         <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6, type: "spring", stiffness: 120 }}
-          className="w-full max-w-5x relative oveflow-hidden mx-auto bg-[#19183B] rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 lg:p-12 border border-[#708993]/20 mb-12"
+          className="w-full max-w-7xl relative oveflow-hidden mx-auto bg-[#19183B] rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 lg:p-12 border border-[#708993]/20 mb-12"
         >
-           <div className="absolute -top-6  -left-6 w-20 h-20 bg-[#A1C2BD]/40 rotate-12 rounded-lg hidden md:block"></div>
+          <div className="absolute -top-6  -left-6 w-20 h-20 bg-[#A1C2BD]/40 rotate-12 rounded-lg hidden md:block"></div>
           <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-[#708993]/30 rounded-full hidden md:block"></div>
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-12 p-4 sm:p-6 bg-gradient-to-br from-[#19183B] via-[#22215E] to-[#2D2C70] rounded-2xl shadow-2xl border border-[#708993]/20">
             {/* Profile Info */}
@@ -318,6 +394,16 @@ export default function ProfilePage() {
               >
                 <BarChart2 size={20} />
               </Button>
+
+              {/* Settings */}
+              <Button
+                onClick={() => {
+                  setSettingOpen(true);
+                }}
+                className="w-full sm:w-auto bg-[#2D2C70] hover:bg-[#22215E] text-[#E7F2EF] font-semibold px-6 py-2 rounded-full shadow-lg flex items-center gap-2 transition-all duration-300"
+              >
+                <Settings size={20} />
+              </Button>
             </motion.div>
           </div>
         </motion.div>
@@ -397,6 +483,44 @@ export default function ProfilePage() {
                 </label>
               </div>
 
+              {/* Tags Input */}
+              <div className="mb-4">
+                <label className="block text-[#A1C2BD] mb-2 text-sm">
+                  Add Tags
+                </label>
+                <div className="flex gap-2 mb-2">
+                  <input
+                    value={tagInput}
+                    onChange={(e) => setTagInput(e.target.value)}
+                    placeholder="Enter a tag and press Add"
+                    className="w-full p-2 rounded-md bg-[#1E1B3B] text-[#E7F2EF] border border-[#708993]"
+                  />
+                  <Button
+                    onClick={handleTagAdd}
+                    className="bg-[#708993] text-[#19183B] hover:bg-[#A1C2BD]"
+                  >
+                    Add
+                  </Button>
+                </div>
+
+                {/* Show added tags */}
+                <div className="flex flex-wrap gap-2">
+                  {form.tags.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="flex items-center gap-1 bg-[#A1C2BD] text-[#19183B] px-3 py-1 rounded-full text-sm"
+                    >
+                      {tag}
+                      <X
+                        size={14}
+                        className="cursor-pointer hover:text-red-500"
+                        onClick={() => handleTagRemove(tag)}
+                      />
+                    </span>
+                  ))}
+                </div>
+              </div>
+
               <button
                 onClick={handleSubmit}
                 className={`mt-4 w-full px-4 py-2 bg-gradient-to-r from-[#708993] to-[#A1C2BD] text-[#19183B] font-bold rounded-md ${
@@ -411,7 +535,7 @@ export default function ProfilePage() {
             </motion.div>
           </div>
         )}
-        
+
         {/* Blogs Section */}
         <div className="max-w-7xl container mt-16 mx-auto px-2 sm:px-4 lg:px-8">
           {/* Section Heading */}
@@ -440,9 +564,7 @@ export default function ProfilePage() {
                     ease: "easeInOut",
                   }}
                   className="inline-flex items-center"
-                >
-                  
-                </motion.span>
+                ></motion.span>
               </span>
 
               {/* Centered underline stays aligned under the text */}
@@ -513,8 +635,6 @@ export default function ProfilePage() {
           )}
         </div>
       </div>
-
-
 
       {/* Avatar Edit  */}
       {avatarOpen && (
@@ -598,9 +718,8 @@ export default function ProfilePage() {
                     console.log("Ye Apka Chiku Chuku", formData);
                     console.log("Ye Apki Entries");
                     for (let [key, value] of formData.entries()) {
-                      console.log("val")
+                      console.log("val");
                       console.log(key, value);
-                      
                     }
 
                     const res = await api.patch("/users/avatar", formData, {
@@ -641,6 +760,14 @@ export default function ProfilePage() {
             </div>
           </motion.div>
         </div>
+      )}
+
+      {/* Setting Open */}
+      {settingOpen && (
+        <SettingOpen
+          settingOpen={settingOpen}
+          setSettingOpen={setSettingOpen}
+        />
       )}
     </>
   );
