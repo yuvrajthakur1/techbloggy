@@ -225,7 +225,7 @@ export default function ProfilePage() {
     <>
 
 
-      <div className="min-h-screen flex flex-col bg-gradient-to-br from-[#19183B] via-[#708993] to-[#E7F2EF] px-4 sm:px-6 md:px-8 lg:px-10 py-8">
+      <div className="min-h-screen flex flex-col bg-bg-[#E7F2EF]  px-4 sm:px-6 md:px-8 lg:px-10 py-8">
         {/* Profile Header */}
         {/* Profile Header */}
 
@@ -420,7 +420,7 @@ export default function ProfilePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-semibold text-white inline-flex items-center justify-center relative pb-3">
+            <h2 className="text-3xl md:text-4xl font-semibold text-[#19183B] inline-flex items-center justify-center relative pb-3">
               <span className="flex items-center justify-center gap-2">
                 Your Blogs
                 {/* Feather-style Icon Animation on Right */}
@@ -438,10 +438,7 @@ export default function ProfilePage() {
                   }}
                   className="inline-flex items-center"
                 >
-                  <Feather
-                    className="h-7 w-7 md:h-8 md:w-8 text-[#A1C2BD] drop-shadow-lg"
-                    strokeWidth={1.8}
-                  />
+                  
                 </motion.span>
               </span>
 
@@ -504,9 +501,6 @@ export default function ProfilePage() {
         </div>
 
         <div className="min-h-screen flex flex-col bg-gradient-to-br ...">
-          {/* ===== Profile Header & Create Blog Modal & Blogs Section ===== */}
-          {/* Your existing code here ... */}
-
           {/* Followers Modal */}
           {followersModalOpen && selectedUserId && (
             <FollowersModal
