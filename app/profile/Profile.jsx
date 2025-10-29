@@ -6,7 +6,7 @@ import api from "../axios/axios";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Plus, X, Upload, BarChart2, ChartBar, ChartArea } from "lucide-react";
+import { Plus, X, Upload, BarChart2, ChartBar, ChartArea,Bot, Lightbulb } from "lucide-react";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -59,7 +59,7 @@ export default function ProfilePage() {
   const [tagInput, setTagInput] = useState("");
   const [previewImage, setPreviewImage] = useState(null);
   const [saving, setSaving] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(4);
+  const [visibleCount, setVisibleCount] = useState(2);
   const router = useRouter();
 
   // inside handleChange (no change needed except below added one)
@@ -383,6 +383,7 @@ export default function ProfilePage() {
             <motion.div className="w-full sm:w-auto mt-4 md:mt-0 flex flex-col sm:flex-row gap-2">
               {/* Create Blog */}
               <Button
+                title = "Create Blog"
                 onClick={() => setBlogOpen(true)}
                 className="w-full sm:w-auto bg-[#2D2C70] hover:bg-[#22215E] text-[#E7F2EF] font-semibold px-6 py-2 rounded-full shadow-lg flex items-center gap-2 transition-all duration-300"
               >
@@ -391,6 +392,7 @@ export default function ProfilePage() {
 
               {/* Analytics */}
               <Button
+                title = "Go To Your Analytics PAge"
                 onClick={() => router.push("/profile/analytics")}
                 className="w-full sm:w-auto bg-[#2D2C70] hover:bg-[#22215E] text-[#E7F2EF] font-semibold px-6 py-2 rounded-full shadow-lg flex items-center gap-2 transition-all duration-300"
               >
@@ -399,6 +401,7 @@ export default function ProfilePage() {
 
               {/* Settings */}
               <Button
+              title = "Got To Your Settings"
                 onClick={() => {
                   setSettingOpen(true);
                 }}
@@ -409,12 +412,13 @@ export default function ProfilePage() {
 
               {/* Ai Chat */}
               <Button
+                title = "Write Blog With Ai.."
                 onClick={() => {
                   setChatOpen(true);
                 }}
                 className="w-full sm:w-auto bg-[#2D2C70] hover:bg-[#22215E] text-[#E7F2EF] font-semibold px-6 py-2 rounded-full shadow-lg flex items-center gap-2 transition-all duration-300"
               >
-                <ChartArea size={20} />
+                <Lightbulb size={20} />
               </Button>
             </motion.div>
           </div>
@@ -603,7 +607,7 @@ export default function ProfilePage() {
           ) : (
             <>
               <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2  gap-4 sm:gap-6"
                 initial="hidden"
                 animate="visible"
                 variants={{
