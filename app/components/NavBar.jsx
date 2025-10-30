@@ -194,7 +194,7 @@ export default function Navbar() {
               </Link>
             ))}
 
-            {user && (
+            {/* {user && (
               <Link
                 href="/profile"
                 className={`relative text-sm font-medium ${isActive(
@@ -212,7 +212,7 @@ export default function Navbar() {
                   ></span>
                 )}
               </Link>
-            )}
+            )} */}
 
             {!user ? (
               <Link href="/login">
@@ -261,7 +261,7 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-
+{/* 
             {user && (
               <Link
                 href="/profile"
@@ -272,7 +272,7 @@ export default function Navbar() {
               >
                 Profile
               </Link>
-            )}
+            )} */}
 
             {!user ? (
               <Link href="/login" onClick={() => setIsOpen(false)}>

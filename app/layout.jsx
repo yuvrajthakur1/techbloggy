@@ -75,7 +75,7 @@ const lora = Lora({
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${playfair.variable} ${lora.variable}`}>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex bg-[#E7F2EF] flex-col">
         {/* 🧭 Top Navbar */}
         <Navbar />
 

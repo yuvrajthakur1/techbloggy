@@ -607,7 +607,7 @@ export default function ProfilePage() {
           ) : (
             <>
               <motion.div
-                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2  gap-4 sm:gap-6"
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2  gap-4 sm:gap-6"
                 initial="hidden"
                 animate="visible"
                 variants={{
@@ -787,8 +787,7 @@ export default function ProfilePage() {
       )}
 
      {/* ChatBot OPen */}
-      {
-   
+      {   
        chatOpen &&  <AIWriterModal open={chatOpen} setChatOpen={setChatOpen}/>
       }
     </>

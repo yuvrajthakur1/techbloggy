@@ -199,7 +199,7 @@ export default function PublicProfilePage() {
         ) : blogs.length === 0 ? (
           <p className="text-[#A1C2BD] text-center">No posts yet...</p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2  gap-6">
             {blogs.map((blog) => (
               <UserBlogCard key={blog._id} blog={blog} />
             ))}
